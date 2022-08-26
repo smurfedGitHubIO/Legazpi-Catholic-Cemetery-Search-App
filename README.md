@@ -15,3 +15,7 @@ Note: It only lists the top 10 closest values in the list and is case sensitive.
 6. On the `client` terminal, run `npm start`. The page should pop up by now at `localhost:3000`.
 
 For more info, kindly contact (+63906-065-2947).
+
+TODO:
+
+Refactor.
