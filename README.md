@@ -1,4 +1,4 @@
-# Legazpi-Catholic-Cemetery-Search-App v1.0
+# Legazpi-Catholic-Cemetery-Search-App v2.0
 
 Simple search app that searches data based on the given input.
 
