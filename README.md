@@ -2,7 +2,7 @@
 
 Simple search app that searches data based on the given input.
 
-Note: It only lists the top 10 closest values in the list and is case sensitive.
+Note: It only lists the top 10 closest searches on the list.
 
 ### Installation
 
