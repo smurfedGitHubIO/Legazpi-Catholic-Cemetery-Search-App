@@ -11,7 +11,6 @@ Note: It only lists the top 10 closest searches on the list.
 3. Open two terminals and open the directory for `server` folder on one terminal and the `client` folder on the other.
 
 4. Run `npm install` on both terminals.
-5. On the `server` terminal, run `npm run dev`.
-6. On the `client` terminal, run `npm start`. The page should pop up by now at `localhost:3000`.
+5. On the `server` terminal, run `npm run dev`. The page should pop up by now at `localhost:3000`.
 
 For more info, kindly contact (+63906-065-2947).
