@@ -1,12 +1,12 @@
 import React from 'react';
 
-const List = ({outputSearch}) => {
+const List = ({ outputSearch }) => {
 
     const ISOStringToProperDate = (dateString) => {
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        let year = dateString.slice(0,4);
-        let month = months[parseInt(dateString.slice(5,7))-1];
-        let day = parseInt(dateString.slice(8,10))+1;
+        let year = dateString.slice(0, 4);
+        let month = months[parseInt(dateString.slice(5, 7))-1];
+        let day = parseInt(dateString.slice(8, 10))+1;
         return month + " " + day + ", " + year;
     };
 
@@ -16,8 +16,8 @@ const List = ({outputSearch}) => {
         } else {
             let curList = outputSearch.filter((element, index) => {
                 return index <= 9;
-            })
-            return curList.map((element, index) => ((
+            });
+            return curList.map( (element, index) => ((
                 <div id={index} style={ divStyle }>
                     <h3 style={ pStyle }>Name: {element["Name "]}</h3>
                     <p style={ pStyle }>Date of Birth: {ISOStringToProperDate(element["Date of Birth"])}</p>

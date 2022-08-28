@@ -9,80 +9,68 @@ const SearchBar = () => {
     const [inputWidth, setInputWidth] = useState("300px");
     const [checkedValue, setCheckedValue] = useState([false, false, false]);
 
-    /* functions list */
-
     const valueGetter = async (property, value) => {
-        console.log(property);
-        await axios.post("http://localhost:3002/search", { value : value , property : property})
-        .then((data1) => {
-            console.log(data1);
+        await axios.post("http://localhost:3002/search", { value : value.toLowerCase() , property : property})
+        .then( (data1) => {
             setOutputSearch(data1.data);
         });
     };
 
     const disableChecker = (checkboxID, newState) => {
-        if(!document.getElementById(checkboxID).checked) {
+        if (!document.getElementById(checkboxID).checked) {
             setCheckedValue([false, false, false]);
         } else {
             setCheckedValue(newState);
         }
     }
 
-    // const onClickInputTypeChange = (prop) => {
-    //     if((!document.querySelector("#nameSearch").checked && !document.querySelector("#birthSearch").checked && !document.querySelector("#deathSearch").checked) || prop === "name") {
-    //         document.getElementById("inp").type = "text";
-    //     } else {
-    //         document.getElementById("inp").type = "date";
-    //     }
-    //     document.getElementById("inp").style.width = "300px";
-    // }
-
-    /* end of functions list */
+    const onClickInputTypeChange = (newType) => {
+        setInputType(newType);
+        setInputWidth("300px");
+    }
 
     return (
         <div>
-            <h1 style = { headStyle }>Legazpi Catholic Cemetery Search App</h1>
+            <h1 style={headStyle}>
+                Legazpi Catholic Cemetery Search App
+            </h1>
             <input onChange={ e => {
                 if (document.querySelector("#nameSearch").checked && e.target.value !== "") {
                     valueGetter("name", e.target.value);
-                } else if(document.querySelector("#birthSearch").checked && e.target.value !== "") {
+                } else if (document.querySelector("#birthSearch").checked && e.target.value !== "") {
                     valueGetter("birthDate", e.target.value);
-                } else if(document.querySelector("#deathSearch").checked && e.target.value !== ""){
+                } else if (document.querySelector("#deathSearch").checked && e.target.value !== "") {
                     valueGetter("deathDate", e.target.value);
                 } else {
                     if (e.target.value !== "") {
                         valueGetter("name", e.target.value);
-                    }
-                    else {
+                    } else {
                         setOutputSearch([]);
                     }
                 }
                 
-            } } type={ inputType } id="inp" style = { { width: inputWidth } }/>
+            } } type={inputType} id="inp" style = { { width: inputWidth } }/>
             <br />
             <input onClick={
                 e => {
                     disableChecker("nameSearch", [true, false, false]);
-                    setInputType("text");
-                    setInputWidth("300px");
+                    onClickInputTypeChange("text");
                 }
-            } id="nameSearch" type="checkbox" value="Name" checked = { checkedValue[0] } />
+            } id="nameSearch" type="checkbox" value="Name" checked={checkedValue[0]} />
             <label>Name</label>
             <input onClick={
                 e => {
                     disableChecker("birthSearch", [false, true, false]);
-                    setInputType("date");
-                    setInputWidth("300px");
+                    onClickInputTypeChange("date");
                 }
-            } id="birthSearch" type="checkbox" value="Date of Birth" checked = { checkedValue[1] } />
+            } id="birthSearch" type="checkbox" value="Date of Birth" checked={checkedValue[1]} />
             <label>Date of Birth</label>
             <input onClick={
                 e => {
                     disableChecker("deathSearch", [false, false, true]);
-                    setInputType("date");
-                    setInputWidth("300px");
+                    onClickInputTypeChange("date");
                 }
-            } id="deathSearch" type="checkbox" value="Date of Death" checked = { checkedValue[2] } />
+            } id="deathSearch" type="checkbox" value="Date of Death" checked={checkedValue[2]} />
             <label>Date of Death</label>
             <br />
             <br />
