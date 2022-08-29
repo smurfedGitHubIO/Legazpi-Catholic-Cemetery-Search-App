@@ -13,4 +13,4 @@ Note: It only lists the top 10 closest searches on the list.
 4. Run `npm install` on both terminals.
 5. On the `server` terminal, run `npm run dev`. The page should pop up by now at `localhost:3000`.
 
-For more info, kindly contact (+63906-065-2947).
+Whenever you would run the application, just open up the terminal and path towards the `server` directory. Then run `npm run dev`. For more info, kindly contact (+63906-065-2947).
