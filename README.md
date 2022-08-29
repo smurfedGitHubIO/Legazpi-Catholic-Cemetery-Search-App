@@ -2,7 +2,7 @@
 
 Simple search app that searches data based on given input.
 
-> Note: It only lists the top 10 closest searches on the list.
+> Note: It only lists the top 10 closest searches.
 
 ### Installation
 
