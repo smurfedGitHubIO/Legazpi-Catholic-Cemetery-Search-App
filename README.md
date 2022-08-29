@@ -1,8 +1,8 @@
 # Legazpi-Catholic-Cemetery-Search-App v2.0
 
-Simple search app that searches data based on the given input.
+Simple search app that searches data based on given input.
 
-Note: It only lists the top 10 closest searches on the list.
+> Note: It only lists the top 10 closest searches on the list.
 
 ### Installation
 
