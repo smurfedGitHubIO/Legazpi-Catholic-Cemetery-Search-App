@@ -12,4 +12,4 @@ Simple search app that searches data based on given input.
 4. Run `npm install` on both terminals. You can close the `client` terminal after installation.
 5. On the `server` terminal, run `npm run dev`. The page should pop up by now at `localhost:3000`.
 
-Whenever you would run the application, just open up the terminal and path towards the `server` directory. Check the sample run [here](https://youtu.be/XhmdSOZcyTs). Then run `npm run dev`. For more info, kindly contact (+63906-065-2947).
+Whenever you would run the application, just open up the terminal and path towards the `server` directory. Check the sample demonstration [here](https://youtu.be/XhmdSOZcyTs). Then run `npm run dev`. For more info, kindly contact (+63906-065-2947).
