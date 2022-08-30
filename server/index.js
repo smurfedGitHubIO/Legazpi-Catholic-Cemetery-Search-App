@@ -28,20 +28,33 @@ const hasSearch = (a, b) => {
   return checker;
 };
 
+const ISOStringToProperDate = (dateString) => {
+  let months = {
+    "Jan": "january",
+    "Feb": "february",
+    "Mar": "march",
+    "Apr": "april",
+    "May": "may",
+    "Jun": "june",
+    "Jul": "july",
+    "Aug": "august",
+    "Sep": "september",
+    "Oct": "october",
+    "Nov": "november",
+    "Dec": "december",
+  };
+  dateString = String(dateString);
+  let year = dateString.slice(11, 15);
+  let month = months[dateString.slice(4, 7)];
+  let day = parseInt(dateString.slice(8, 10));
+  return month + " " + day + ", " + year;
+};
+
 /* end of functions list */
 
 app.post("/search", (req, res) => {
-  let toSearch = "";
+  let toSearch = req.body.value;
   const property = req.body.property;
-  if (property != "name") {
-    toSearch = new Date(
-      req.body.value.slice(0, 4),
-      parseInt(req.body.value.slice(5, 7)) - 1,
-      parseInt(req.body.value.slice(8, 10))
-    );
-  } else {
-    toSearch = req.body.value;
-  }
   let sheet_list = XLSX.utils.sheet_to_json(
     workbook.Sheets[sheet_name_list[0]]
   );
@@ -58,7 +71,8 @@ app.post("/search", (req, res) => {
       if (val.hasOwnProperty("Date of Birth") == false) {
         return false;
       }
-      return val["Date of Birth"].getTime() - toSearch.getTime() == 0;
+      let convertedDate = ISOStringToProperDate(val["Date of Birth"]);
+      return hasSearch(convertedDate, toSearch);
     });
     res.send(ans);
   } else {
@@ -66,7 +80,8 @@ app.post("/search", (req, res) => {
       if (val.hasOwnProperty("Date of Death") == false) {
         return false;
       }
-      return val["Date of Death"].getTime() - toSearch.getTime() == 0;
+      let convertedDate = ISOStringToProperDate(val["Date of Death"]);
+      return hasSearch(convertedDate, toSearch);
     });
     res.send(ans);
   }
