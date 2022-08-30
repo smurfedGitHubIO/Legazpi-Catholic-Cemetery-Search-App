@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import List from "./List";
 import axios from "axios";
+import headStyle from './SearchBarCSS';
 
 const SearchBar = () => {
   const [outputSearch, setOutputSearch] = useState([]);
   const [inputType, setInputType] = useState("text");
   const [inputWidth, setInputWidth] = useState("300px");
-  const [checkedValue, setCheckedValue] = useState([false, false, false]);
+  const [checkedValue, setCheckedValue] = useState([true, false, false]);
 
   const valueGetter = async (property, value) => {
     await axios
@@ -19,8 +20,8 @@ const SearchBar = () => {
       });
   };
 
-  const disableChecker = (checkboxID, newState) => {
-    if (!document.getElementById(checkboxID).checked) {
+  const disableChecker = (checkboxState, newState) => {
+    if (checkboxState) {
       setCheckedValue([false, false, false]);
     } else {
       setCheckedValue(newState);
@@ -37,20 +38,11 @@ const SearchBar = () => {
       <h1 style={headStyle}>Legazpi Catholic Cemetery Search App</h1>
       <input
         onChange={(e) => {
-          if (
-            document.querySelector("#nameSearch").checked &&
-            e.target.value !== ""
-          ) {
+          if (checkedValue[0] && e.target.value !== "") {
             valueGetter("name", e.target.value);
-          } else if (
-            document.querySelector("#birthSearch").checked &&
-            e.target.value !== ""
-          ) {
+          } else if (checkedValue[1] && e.target.value !== "") {
             valueGetter("birthDate", e.target.value);
-          } else if (
-            document.querySelector("#deathSearch").checked &&
-            e.target.value !== ""
-          ) {
+          } else if (checkedValue[2] && e.target.value !== "") {
             valueGetter("deathDate", e.target.value);
           } else {
             if (e.target.value !== "") {
@@ -66,8 +58,8 @@ const SearchBar = () => {
       />
       <br />
       <input
-        onClick={(e) => {
-          disableChecker("nameSearch", [true, false, false]);
+        onChange={(e) => {
+          disableChecker(checkedValue[0], [true, false, false]);
           onClickInputTypeChange("text");
         }}
         id="nameSearch"
@@ -77,8 +69,8 @@ const SearchBar = () => {
       />
       <label>Name</label>
       <input
-        onClick={(e) => {
-          disableChecker("birthSearch", [false, true, false]);
+        onChange={(e) => {
+          disableChecker(checkedValue[1], [false, true, false]);
           onClickInputTypeChange("date");
         }}
         id="birthSearch"
@@ -88,8 +80,8 @@ const SearchBar = () => {
       />
       <label>Date of Birth</label>
       <input
-        onClick={(e) => {
-          disableChecker("deathSearch", [false, false, true]);
+        onChange={(e) => {
+          disableChecker(checkedValue[2], [false, false, true]);
           onClickInputTypeChange("date");
         }}
         id="deathSearch"
@@ -104,16 +96,5 @@ const SearchBar = () => {
     </div>
   );
 };
-
-/* CSS Styles */
-
-const headStyle = {
-  fontSize: "6vh",
-  padding: 0,
-  margin: "8vh 2vh 4vh 2vh",
-  color: "#222",
-};
-
-/* End of CSS Styles */
 
 export default SearchBar;
