@@ -14,7 +14,8 @@ const h3Style = {
 const headStyle = {
   padding: "1.2vh",
   margin: "2.2vh 30vh 2.2vh 30vh",
-  border: "2.2px solid #444",
+  borderTop: "4px solid #444",
+  borderBottom: "4px solid #444",
   display: "flex",
 };
 

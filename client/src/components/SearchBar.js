@@ -5,8 +5,7 @@ import headStyle from './SearchBarCSS';
 
 const SearchBar = () => {
   const [outputSearch, setOutputSearch] = useState([]);
-  const [inputType, setInputType] = useState("text");
-  const [inputWidth, setInputWidth] = useState("300px");
+  const inputWidth = "300px";
   const [checkedValue, setCheckedValue] = useState([true, false, false]);
 
   const valueGetter = async (property, value) => {
@@ -28,11 +27,6 @@ const SearchBar = () => {
     }
   };
 
-  const onClickInputTypeChange = (newType) => {
-    setInputType(newType);
-    setInputWidth("300px");
-  };
-
   return (
     <div>
       <h1 style={headStyle}>Legazpi Catholic Cemetery Search App</h1>
@@ -52,16 +46,13 @@ const SearchBar = () => {
             }
           }
         }}
-        type={inputType}
+        type="text"
         id="inp"
         style={{ width: inputWidth }}
       />
       <br />
       <input
-        onChange={(e) => {
-          disableChecker(checkedValue[0], [true, false, false]);
-          onClickInputTypeChange("text");
-        }}
+        onChange={(e) => disableChecker(checkedValue[0], [true, false, false])}
         id="nameSearch"
         type="checkbox"
         value="Name"
@@ -69,10 +60,7 @@ const SearchBar = () => {
       />
       <label>Name</label>
       <input
-        onChange={(e) => {
-          disableChecker(checkedValue[1], [false, true, false]);
-          onClickInputTypeChange("date");
-        }}
+        onChange={(e) => disableChecker(checkedValue[1], [false, true, false])}
         id="birthSearch"
         type="checkbox"
         value="Date of Birth"
@@ -80,10 +68,7 @@ const SearchBar = () => {
       />
       <label>Date of Birth</label>
       <input
-        onChange={(e) => {
-          disableChecker(checkedValue[2], [false, false, true]);
-          onClickInputTypeChange("date");
-        }}
+        onChange={(e) => disableChecker(checkedValue[2], [false, false, true])}
         id="deathSearch"
         type="checkbox"
         value="Date of Death"
